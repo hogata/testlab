@@ -6,6 +6,8 @@
   <script type="text/javascript" src="https://skyway.io/dist/0.3/peer.js"></script>
   <script>
 
+    var userList = new Array();
+
     // Compatibility shim
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
@@ -13,16 +15,18 @@
     var peer = new Peer({ key: '7f46370a-5437-11e4-9c0f-37a3868ad2e1', debug: 3});
 
 
-	peer.listAllPeers(function(list){
+    peer.listAllPeers(function(list){
       //（例）取得したPeerIDリストを配列に格納する
     for(var cnt = 0;cnt < list.length;cnt++){
         userList.push(list[cnt]);
-		console.log(list[]);
     }
+      console.log(list);
+      $('#id-list').text(list);
 	});
+
     
 	
-	peer.on('open', function(){
+    peer.on('open', function(){
       $('#my-id').text(peer.id);
     });
 
