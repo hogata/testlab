@@ -12,7 +12,17 @@
     // PeerJS object
     var peer = new Peer({ key: '7f46370a-5437-11e4-9c0f-37a3868ad2e1', debug: 3});
 
-    peer.on('open', function(){
+
+	peer.listAllPeers(function(list){
+      //（例）取得したPeerIDリストを配列に格納する
+    for(var cnt = 0;cnt < list.length;cnt++){
+        userList.push(list[cnt]);
+		console.log(list[]);
+    }
+	});
+    
+	
+	peer.on('open', function(){
       $('#my-id').text(peer.id);
     });
 
@@ -118,6 +128,7 @@
         <!-- Make calls to others -->
         <div id="step2">
           <p>Your id: <span id="my-id">...</span></p>
+		  <p>list id: <span id="id-list">...</span></p>
           <p>Share this id with others so they can call you.</p>
           <h3>Make a call</h3>
           <div class="pure-form">
